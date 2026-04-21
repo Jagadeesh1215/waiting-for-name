@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "General Sans", system-ui, sans-serif;
+    --font-body: "General Sans", system-ui, sans-serif;
+    --font-mono: "Fira Code", monospace;
+    --radius: 0.875rem;
+
+    --background: 0.975 0.04 202;
+    --foreground: 0.25 0.08 253;
+    --card: 0.98 0 0;
+    --card-foreground: 0.25 0.08 253;
+    --popover: 0.98 0 0;
+    --popover-foreground: 0.25 0.08 253;
+
+    --primary: 0.54 0.15 262;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.94 0.05 200;
+    --secondary-foreground: 0.3 0.08 253;
+    --muted: 0.93 0.05 202;
+    --muted-foreground: 0.5 0.03 253;
+
+    --accent: 0.54 0.15 262;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.93 0.02 202;
+    --input: 0.96 0.02 200;
+    --ring: 0.54 0.15 262;
+
+    --chart-1: 0.54 0.15 262;
+    --chart-2: 0.65 0.22 40;
+    --chart-3: 0.6 0.16 48;
+    --chart-4: 0.6 0.18 140;
+    --chart-5: 0.6 0.2 290;
+
+    --sidebar: 0.975 0.04 202;
+    --sidebar-foreground: 0.25 0.08 253;
+    --sidebar-primary: 0.54 0.15 262;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.94 0.05 200;
+    --sidebar-accent-foreground: 0.3 0.08 253;
+    --sidebar-border: 0.93 0.02 202;
+    --sidebar-ring: 0.54 0.15 262;
+  }
+
+  .dark {
+    --background: 0.12 0.02 250;
+    --foreground: 0.94 0.02 200;
+    --card: 0.16 0.02 250;
+    --card-foreground: 0.94 0.02 200;
+    --popover: 0.2 0.02 250;
+    --popover-foreground: 0.94 0.02 200;
+
+    --primary: 0.65 0.18 262;
+    --primary-foreground: 0.12 0.02 250;
+
+    --secondary: 0.2 0.03 250;
+    --secondary-foreground: 0.84 0.04 200;
+    --muted: 0.2 0.03 250;
+    --muted-foreground: 0.52 0.03 253;
+
+    --accent: 0.65 0.18 262;
+    --accent-foreground: 0.12 0.02 250;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.12 0.02 250;
+
+    --border: 0.22 0.02 250;
+    --input: 0.22 0.02 250;
+    --ring: 0.65 0.18 262;
+
+    --chart-1: 0.65 0.18 262;
+    --chart-2: 0.7 0.2 50;
+    --chart-3: 0.68 0.18 48;
+    --chart-4: 0.68 0.2 140;
+    --chart-5: 0.68 0.22 290;
+
+    --sidebar: 0.16 0.02 250;
+    --sidebar-foreground: 0.94 0.02 200;
+    --sidebar-primary: 0.65 0.18 262;
+    --sidebar-primary-foreground: 0.12 0.02 250;
+    --sidebar-accent: 0.2 0.03 250;
+    --sidebar-accent-foreground: 0.84 0.04 200;
+    --sidebar-border: 0.22 0.02 250;
+    --sidebar-ring: 0.65 0.18 262;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("/assets/fonts/Lora.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Medical category badges */
+  .badge-spine {
+    @apply bg-blue-50 text-blue-700 border-blue-100;
+  }
+
+  .badge-brain {
+    @apply bg-amber-50 text-amber-700 border-amber-100;
+  }
+
+  .badge-neurology {
+    @apply bg-purple-50 text-purple-700 border-purple-100;
+  }
+
+  .badge-rehabilitation {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-100;
+  }
+
+  .badge-general {
+    @apply bg-slate-100 text-slate-600 border-slate-200;
+  }
+
+  /* Medical brand colors */
+  .medical-blue {
+    @apply text-[#1A6EA8];
+  }
+
+  .bg-medical-blue {
+    @apply bg-[#1A6EA8];
+  }
+
+  .dark-text {
+    @apply text-[#12344d];
+  }
+
+  .soft-blue-grey {
+    @apply bg-[#f5f7fa];
+  }
+}

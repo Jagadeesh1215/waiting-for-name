@@ -1,0 +1,26 @@
+// Version: 1.0.0
+type Blog__351643665 =
+  {
+    author : Text;
+    authorDesignation : Text;
+    category : Text;
+    content : Text;
+    createdAt : Int;
+    id : Text;
+    imageAlt : Text;
+    imageUrl : Text;
+    publishDate : Text;
+    slug : Text;
+    title : Text
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+actor {
+  stable blogs :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Blog__351643665]];
+      var elementIndex : Nat__490723111
+    };
+  stable var idCounter : {var value : Nat}
+};

@@ -1,0 +1,23 @@
+{
+  "overview": "A full-stack admin blog management system built on Internet Computer. Features a Motoko backend with persistent blog storage, CRUD operations, category filtering, search, and pagination. The React frontend provides a polished admin dashboard with a multi-step blog editor using react-quill-new, stat cards, skeleton loaders, toast notifications, and smooth motion animations.",
+  "features": [
+    "Admin dashboard with stat cards, search, and category filters",
+    "Blog table with pagination, skeleton loaders, and delete confirmation",
+    "Multi-step blog creation wizard (Basic Info, Content, Media)",
+    "Rich text editor with react-quill-new",
+    "Edit blog with pre-filled form and slug lock",
+    "Category badges with unique color coding",
+    "Toast notifications and animated modals",
+    "Full Motoko backend with persistent CRUD operations"
+  ],
+  "category": "productivity",
+  "tags": [
+    "blog",
+    "admin",
+    "cms",
+    "motoko",
+    "react",
+    "tailwind"
+  ],
+  "last_updated": "2026-04-21T10:46:36.130Z"
+}

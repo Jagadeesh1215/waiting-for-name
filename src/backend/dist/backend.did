@@ -1,0 +1,62 @@
+type UpdateBlogInput = 
+ record {
+   author: text;
+   authorDesignation: text;
+   category: text;
+   content: text;
+   imageAlt: text;
+   imageUrl: text;
+   publishDate: text;
+   slug: text;
+   title: text;
+ };
+type PaginatedBlogs = 
+ record {
+   blogs: vec Blog;
+   totalCount: nat;
+ };
+type CreateBlogInput = 
+ record {
+   author: text;
+   authorDesignation: text;
+   category: text;
+   content: text;
+   imageAlt: text;
+   imageUrl: text;
+   publishDate: text;
+   slug: text;
+   title: text;
+ };
+type Blog = 
+ record {
+   author: text;
+   authorDesignation: text;
+   category: text;
+   content: text;
+   createdAt: int;
+   id: text;
+   imageAlt: text;
+   imageUrl: text;
+   publishDate: text;
+   slug: text;
+   title: text;
+ };
+service : {
+  createBlog: (input: CreateBlogInput) -> (variant {
+                                             err: text;
+                                             ok: Blog;
+                                           });
+  deleteBlog: (slug: text) -> (variant {
+                                 err: text;
+                                 ok;
+                               });
+  getAllBlogs: () -> (vec Blog) query;
+  getBlogBySlug: (slug: text) -> (opt Blog) query;
+  getBlogsPaginated: (pageNumber: nat, pageSize: nat, categoryFilter: 
+   text, searchQuery: text) -> (PaginatedBlogs) query;
+  updateBlog: (slug: text, input: UpdateBlogInput) ->
+   (variant {
+      err: text;
+      ok: Blog;
+    });
+}
