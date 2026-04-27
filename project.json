@@ -1,23 +1,27 @@
 {
-  "overview": "A full-stack admin blog management system built on Internet Computer. Features a Motoko backend with persistent blog storage, CRUD operations, category filtering, search, and pagination. The React frontend provides a polished admin dashboard with a multi-step blog editor using react-quill-new, stat cards, skeleton loaders, toast notifications, and smooth motion animations.",
+  "overview": "VenIQ Media LLP — a visually stunning digital growth agency website with 3D hero scenes, animated pages, dark mode, blog, portfolio, and a consultation booking system. Built for hospitals, doctors, clinics, and modern businesses in India.",
   "features": [
-    "Admin dashboard with stat cards, search, and category filters",
-    "Blog table with pagination, skeleton loaders, and delete confirmation",
-    "Multi-step blog creation wizard (Basic Info, Content, Media)",
-    "Rich text editor with react-quill-new",
-    "Edit blog with pre-filled form and slug lock",
-    "Category badges with unique color coding",
-    "Toast notifications and animated modals",
-    "Full Motoko backend with persistent CRUD operations"
+    "3D animated hero with floating laptop, phone, and orbiting social icons",
+    "9 public pages: Home, About, Services (overview + 6 detail pages), Blog, Business Hub, Portfolio",
+    "Dark mode toggle with localStorage persistence",
+    "Framer Motion scroll animations and page transitions",
+    "Sticky responsive navbar with services dropdown and mobile drawer",
+    "Consultation booking modal form",
+    "WhatsApp float button and scroll-to-top",
+    "Blog listing and blog post pages with category filtering",
+    "Stats counters with viewport-triggered count-up animation",
+    "Cookie banner with GDPR-style dismissal"
   ],
-  "category": "productivity",
+  "category": "showcase",
   "tags": [
+    "digital-agency",
+    "marketing",
+    "healthcare",
+    "3d-animations",
+    "dark-mode",
     "blog",
-    "admin",
-    "cms",
-    "motoko",
-    "react",
-    "tailwind"
+    "portfolio",
+    "india"
   ],
-  "last_updated": "2026-04-21T10:46:36.130Z"
+  "last_updated": "2026-04-22T19:51:44.291Z"
 }

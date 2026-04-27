@@ -1,95 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Sora:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --font-display: "General Sans", system-ui, sans-serif;
-    --font-body: "General Sans", system-ui, sans-serif;
-    --font-mono: "Fira Code", monospace;
+    --font-display: "Playfair Display", serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "Space Mono", monospace;
     --radius: 0.875rem;
 
-    --background: 0.975 0.04 202;
-    --foreground: 0.25 0.08 253;
-    --card: 0.98 0 0;
-    --card-foreground: 0.25 0.08 253;
-    --popover: 0.98 0 0;
-    --popover-foreground: 0.25 0.08 253;
+    /* Brand color CSS vars */
+    --brand-purple: #2d1b69;
+    --brand-purple-2: #4a2c9e;
+    --brand-gold: #d4a017;
+    --brand-gold-light: #f0c040;
+    --brand-bg-light: #f8f7ff;
+    --brand-bg-dark: #0d0a1a;
+    --brand-card-dark: #1a1035;
+    --brand-border-light: #e8e3ff;
 
-    --primary: 0.54 0.15 262;
-    --primary-foreground: 0.98 0 0;
+    --background: 0.98 0.02 290;
+    --foreground: 0.12 0.04 285;
+    --card: 0.99 0 0;
+    --card-foreground: 0.12 0.04 285;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.12 0.04 285;
 
-    --secondary: 0.94 0.05 200;
-    --secondary-foreground: 0.3 0.08 253;
-    --muted: 0.93 0.05 202;
-    --muted-foreground: 0.5 0.03 253;
+    --primary: 0.48 0.13 289;
+    --primary-foreground: 0.99 0 0;
 
-    --accent: 0.54 0.15 262;
-    --accent-foreground: 0.98 0 0;
+    --secondary: 0.53 0.16 285;
+    --secondary-foreground: 0.99 0 0;
+    --muted: 0.92 0.03 290;
+    --muted-foreground: 0.48 0.04 280;
+
+    --accent: 0.63 0.15 72;
+    --accent-foreground: 0.12 0.04 285;
 
     --destructive: 0.55 0.22 25;
-    --destructive-foreground: 0.98 0 0;
+    --destructive-foreground: 0.99 0 0;
 
-    --border: 0.93 0.02 202;
-    --input: 0.96 0.02 200;
-    --ring: 0.54 0.15 262;
+    --border: 0.96 0.02 290;
+    --input: 0.96 0.02 290;
+    --ring: 0.63 0.15 72;
 
-    --chart-1: 0.54 0.15 262;
-    --chart-2: 0.65 0.22 40;
-    --chart-3: 0.6 0.16 48;
-    --chart-4: 0.6 0.18 140;
-    --chart-5: 0.6 0.2 290;
+    --chart-1: 0.48 0.13 289;
+    --chart-2: 0.63 0.15 72;
+    --chart-3: 0.53 0.16 285;
+    --chart-4: 0.6 0.2 140;
+    --chart-5: 0.7 0.18 25;
 
-    --sidebar: 0.975 0.04 202;
-    --sidebar-foreground: 0.25 0.08 253;
-    --sidebar-primary: 0.54 0.15 262;
-    --sidebar-primary-foreground: 0.98 0 0;
-    --sidebar-accent: 0.94 0.05 200;
-    --sidebar-accent-foreground: 0.3 0.08 253;
-    --sidebar-border: 0.93 0.02 202;
-    --sidebar-ring: 0.54 0.15 262;
+    --sidebar: 0.98 0.02 290;
+    --sidebar-foreground: 0.12 0.04 285;
+    --sidebar-primary: 0.48 0.13 289;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.63 0.15 72;
+    --sidebar-accent-foreground: 0.12 0.04 285;
+    --sidebar-border: 0.96 0.02 290;
+    --sidebar-ring: 0.63 0.15 72;
   }
 
   .dark {
-    --background: 0.12 0.02 250;
-    --foreground: 0.94 0.02 200;
-    --card: 0.16 0.02 250;
-    --card-foreground: 0.94 0.02 200;
-    --popover: 0.2 0.02 250;
-    --popover-foreground: 0.94 0.02 200;
+    --brand-purple: #4a2c9e;
+    --brand-gold: #f0c040;
 
-    --primary: 0.65 0.18 262;
-    --primary-foreground: 0.12 0.02 250;
+    --background: 0.07 0.02 290;
+    --foreground: 0.95 0.01 290;
+    --card: 0.12 0.04 285;
+    --card-foreground: 0.95 0.01 290;
+    --popover: 0.15 0.03 285;
+    --popover-foreground: 0.95 0.01 290;
 
-    --secondary: 0.2 0.03 250;
-    --secondary-foreground: 0.84 0.04 200;
-    --muted: 0.2 0.03 250;
-    --muted-foreground: 0.52 0.03 253;
+    --primary: 0.58 0.17 288;
+    --primary-foreground: 0.07 0.02 290;
 
-    --accent: 0.65 0.18 262;
-    --accent-foreground: 0.12 0.02 250;
+    --secondary: 0.53 0.16 285;
+    --secondary-foreground: 0.95 0.01 290;
+    --muted: 0.18 0.03 285;
+    --muted-foreground: 0.68 0.04 280;
+
+    --accent: 0.75 0.18 75;
+    --accent-foreground: 0.07 0.02 290;
 
     --destructive: 0.65 0.19 22;
-    --destructive-foreground: 0.12 0.02 250;
+    --destructive-foreground: 0.07 0.02 290;
 
-    --border: 0.22 0.02 250;
-    --input: 0.22 0.02 250;
-    --ring: 0.65 0.18 262;
+    --border: 0.18 0.03 285;
+    --input: 0.18 0.03 285;
+    --ring: 0.75 0.18 75;
 
-    --chart-1: 0.65 0.18 262;
-    --chart-2: 0.7 0.2 50;
-    --chart-3: 0.68 0.18 48;
+    --chart-1: 0.58 0.17 288;
+    --chart-2: 0.75 0.18 75;
+    --chart-3: 0.53 0.16 285;
     --chart-4: 0.68 0.2 140;
-    --chart-5: 0.68 0.22 290;
+    --chart-5: 0.72 0.22 25;
 
-    --sidebar: 0.16 0.02 250;
-    --sidebar-foreground: 0.94 0.02 200;
-    --sidebar-primary: 0.65 0.18 262;
-    --sidebar-primary-foreground: 0.12 0.02 250;
-    --sidebar-accent: 0.2 0.03 250;
-    --sidebar-accent-foreground: 0.84 0.04 200;
-    --sidebar-border: 0.22 0.02 250;
-    --sidebar-ring: 0.65 0.18 262;
+    --sidebar: 0.12 0.04 285;
+    --sidebar-foreground: 0.95 0.01 290;
+    --sidebar-primary: 0.58 0.17 288;
+    --sidebar-primary-foreground: 0.07 0.02 290;
+    --sidebar-accent: 0.75 0.18 75;
+    --sidebar-accent-foreground: 0.07 0.02 290;
+    --sidebar-border: 0.18 0.03 285;
+    --sidebar-ring: 0.75 0.18 75;
   }
 
   * {
@@ -101,67 +116,520 @@
 }
 
 @font-face {
-  font-family: "General Sans";
-  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "General Sans";
-  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Lora";
-  src: url("/assets/fonts/Lora.woff2") format("woff2");
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
   font-weight: 400;
-  font-style: normal;
   font-display: swap;
 }
 
 @layer utilities {
+  /* ─── Transition utilities ─── */
   .transition-smooth {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Medical category badges */
-  .badge-spine {
-    @apply bg-blue-50 text-blue-700 border-blue-100;
+  .transition-spring {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  .badge-brain {
-    @apply bg-amber-50 text-amber-700 border-amber-100;
+  .transition-premium {
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .badge-neurology {
-    @apply bg-purple-50 text-purple-700 border-purple-100;
+  /* ─── Gradient mesh background ─── */
+  .gradient-mesh {
+    background: radial-gradient(
+        ellipse at 20% 50%,
+        rgba(74, 44, 158, 0.15) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        rgba(212, 160, 23, 0.12) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 50% 80%,
+        rgba(45, 27, 105, 0.1) 0%,
+        transparent 55%
+      ), linear-gradient(180deg, #f8f7ff 0%, #fafaf8 100%);
   }
 
-  .badge-rehabilitation {
-    @apply bg-emerald-50 text-emerald-700 border-emerald-100;
+  .dark .gradient-mesh {
+    background: radial-gradient(
+        ellipse at 20% 50%,
+        rgba(74, 44, 158, 0.3) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        rgba(212, 160, 23, 0.15) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 50% 80%,
+        rgba(45, 27, 105, 0.4) 0%,
+        transparent 55%
+      ), linear-gradient(180deg, #0d0a1a 0%, #0a0715 100%);
   }
 
-  .badge-general {
-    @apply bg-slate-100 text-slate-600 border-slate-200;
+  /* ─── Enhanced glassmorphism ─── */
+  .glass-card {
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1.5px solid rgba(212, 160, 23, 0.15);
+    box-shadow: 0 8px 32px rgba(45, 27, 105, 0.08), inset 0 1px 0
+      rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Medical brand colors */
-  .medical-blue {
-    @apply text-[#1A6EA8];
+  .glass-card:hover {
+    background-color: rgba(255, 255, 255, 0.92);
+    border-color: rgba(212, 160, 23, 0.3);
+    box-shadow: 0 16px 48px rgba(45, 27, 105, 0.14), inset 0 1px 0
+      rgba(255, 255, 255, 1);
+    transform: translateY(-4px);
   }
 
-  .bg-medical-blue {
-    @apply bg-[#1A6EA8];
+  .glass-card-dark {
+    backdrop-filter: blur(12px) saturate(160%);
+    background-color: rgba(26, 16, 53, 0.75);
+    border: 1.5px solid rgba(240, 192, 64, 0.12);
+    box-shadow: 0 8px 32px rgba(45, 27, 105, 0.3), inset 0 1px 0
+      rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .dark-text {
-    @apply text-[#12344d];
+  .glass-card-dark:hover {
+    background-color: rgba(26, 16, 53, 0.88);
+    border-color: rgba(240, 192, 64, 0.25);
+    box-shadow: 0 16px 48px rgba(212, 160, 23, 0.18), inset 0 1px 0
+      rgba(255, 255, 255, 0.08);
+    transform: translateY(-4px);
   }
 
-  .soft-blue-grey {
-    @apply bg-[#f5f7fa];
+  /* ─── CTA Primary — gold pill with bloom glow ─── */
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    background-color: #d4a017;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: -0.01em;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 16px rgba(212, 160, 23, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cta-primary:hover {
+    background-color: #f0c040;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(212, 160, 23, 0.55), 0 0 60px
+      rgba(212, 160, 23, 0.3), 0 4px 20px rgba(212, 160, 23, 0.4);
+  }
+
+  .cta-primary:hover::before {
+    opacity: 1;
+  }
+
+  .cta-primary:active {
+    transform: scale(0.98);
+  }
+
+  /* ─── CTA Secondary — outlined ghost button ─── */
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    border: 2px solid #2d1b69;
+    color: #2d1b69;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: -0.01em;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+  }
+
+  .dark .cta-secondary {
+    border-color: #d4a017;
+    color: #d4a017;
+  }
+
+  .cta-secondary:hover {
+    background-color: #d4a017;
+    border-color: #d4a017;
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(212, 160, 23, 0.35);
+  }
+
+  .cta-secondary:active {
+    transform: scale(0.98);
+  }
+
+  /* ─── Section label — mono uppercase gold ─── */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #d4a017;
+  }
+
+  .dark .section-label {
+    color: #f0c040;
+    text-shadow: 0 0 8px rgba(212, 160, 23, 0.35);
+  }
+
+  /* ─── Premium card depth ─── */
+  .card-rest {
+    box-shadow: 0 4px 12px oklch(0.48 0.13 289 / 0.08);
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card-rest:hover {
+    box-shadow: 0 16px 40px oklch(0.48 0.13 289 / 0.18), 0 2px 8px
+      oklch(0.48 0.13 289 / 0.12);
+    transform: translateY(-6px);
+  }
+
+  /* ─── Premium button glow ─── */
+  .btn-gold-glow {
+    box-shadow: 0 0 24px oklch(0.63 0.15 72 / 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-gold-glow:hover {
+    box-shadow: 0 0 40px oklch(0.63 0.15 72 / 0.5), 0 0 80px
+      oklch(0.63 0.15 72 / 0.2);
+  }
+
+  /* ─── Process step circle — gold gradient + spring scale ─── */
+  .process-circle {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #d4a017 0%, #f0c040 100%);
+    box-shadow: 0 4px 20px rgba(212, 160, 23, 0.4), 0 0 0 4px
+      rgba(212, 160, 23, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: #1a1035;
+    font-size: 1.25rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
+  }
+
+  .process-circle:hover {
+    box-shadow: 0 8px 32px rgba(212, 160, 23, 0.55), 0 0 0 6px
+      rgba(212, 160, 23, 0.15), 0 0 60px rgba(212, 160, 23, 0.2);
+    transform: scale(1.08);
+  }
+
+  /* ─── Process connector dashed line with animated dash-offset ─── */
+  .process-connector {
+    flex: 1;
+    border-top: 2px dashed rgba(212, 160, 23, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-connector::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(212, 160, 23, 0.9) 0px,
+      rgba(212, 160, 23, 0.9) 8px,
+      transparent 8px,
+      transparent 16px
+    );
+    background-size: 24px 2px;
+    animation: dash-scroll 12s linear infinite;
+  }
+
+  @keyframes dash-scroll {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -240px 0;
+    }
+  }
+
+  /* ─── Scroll progress indicator ─── */
+  .scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #d4a017 0%, #4a2c9e 100%);
+    z-index: 50;
+    box-shadow: 0 0 12px rgba(212, 160, 23, 0.5), 0 0 24px
+      rgba(212, 160, 23, 0.25);
+  }
+
+  /* ─── Ticker animation ─── */
+  .ticker-animation {
+    animation: ticker 30s linear infinite;
+  }
+
+  /* ─── Brand color utilities ─── */
+  .text-brand-primary {
+    color: #2d1b69;
+  }
+
+  .dark .text-brand-primary {
+    color: #a78bfa;
+  }
+
+  .bg-brand-primary {
+    background-color: #2d1b69;
+  }
+
+  .border-brand-gold {
+    border-color: #d4a017;
+  }
+
+  .text-brand-gold {
+    color: #d4a017;
+  }
+
+  .dark .text-brand-gold {
+    color: #f0c040;
+  }
+
+  /* ─── Brand gradient utilities ─── */
+  .gradient-primary {
+    background: linear-gradient(135deg, #2d1b69 0%, #4a2c9e 100%);
+  }
+
+  .gradient-gold-glow {
+    background: linear-gradient(135deg, #d4a017 0%, #f0c040 100%);
+  }
+
+  .gradient-gold-radial {
+    background: radial-gradient(
+      circle at center,
+      rgba(212, 160, 23, 0.15) 0%,
+      rgba(212, 160, 23, 0.05) 70%,
+      transparent 100%
+    );
+  }
+
+  /* ─── Magnetic CTA shimmer overlay ─── */
+  .cta-magnetic {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .cta-magnetic::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(212, 160, 23, 0.2) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cta-magnetic:hover::before {
+    opacity: 1;
+  }
+
+  /* ─── Service badge variants ─── */
+  .badge-social {
+    @apply bg-purple-50 text-purple-700 border-purple-200 transition-colors duration-300;
+  }
+  .badge-social:hover {
+    @apply bg-purple-100 border-purple-300;
+  }
+
+  .badge-orm {
+    @apply bg-blue-50 text-blue-700 border-blue-200 transition-colors duration-300;
+  }
+  .badge-orm:hover {
+    @apply bg-blue-100 border-blue-300;
+  }
+
+  .badge-branding {
+    @apply bg-amber-50 text-amber-700 border-amber-200 transition-colors duration-300;
+  }
+  .badge-branding:hover {
+    @apply bg-amber-100 border-amber-300;
+  }
+
+  .badge-web {
+    @apply bg-indigo-50 text-indigo-700 border-indigo-200 transition-colors duration-300;
+  }
+  .badge-web:hover {
+    @apply bg-indigo-100 border-indigo-300;
+  }
+
+  .badge-marketing {
+    @apply bg-red-50 text-red-700 border-red-200 transition-colors duration-300;
+  }
+  .badge-marketing:hover {
+    @apply bg-red-100 border-red-300;
+  }
+
+  .badge-influencer {
+    @apply bg-pink-50 text-pink-700 border-pink-200 transition-colors duration-300;
+  }
+  .badge-influencer:hover {
+    @apply bg-pink-100 border-pink-300;
+  }
+
+  /* ─── Dashed SVG connector animation ─── */
+  .dashed-connector {
+    stroke-dasharray: 8, 8;
+    animation: dash-flow 0.5s linear infinite;
+  }
+
+  @keyframes dash-flow {
+    to {
+      stroke-dashoffset: -16;
+    }
+  }
+
+  /* ─── Headline split animation wrapper ─── */
+  .headline-split {
+    display: block;
+    overflow: hidden;
+  }
+
+  /* ─── Floating label input wrapper ─── */
+  .floating-label-group {
+    position: relative;
+  }
+
+  .floating-label-group input,
+  .floating-label-group textarea,
+  .floating-label-group select {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .floating-label-group label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.875rem;
+    color: #6b6b8a;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+  }
+
+  .floating-label-group textarea ~ label {
+    top: 1.25rem;
+    transform: translateY(0);
+  }
+
+  .floating-label-group input:focus ~ label,
+  .floating-label-group input:not(:placeholder-shown) ~ label,
+  .floating-label-group textarea:focus ~ label,
+  .floating-label-group textarea:not(:placeholder-shown) ~ label,
+  .floating-label-group select:focus ~ label,
+  .floating-label-group select:not([value=""]) ~ label {
+    top: 0.4rem;
+    transform: translateY(0) scale(0.78);
+    color: #d4a017;
+    font-weight: 600;
+  }
+
+  .floating-label-group input:focus,
+  .floating-label-group textarea:focus,
+  .floating-label-group select:focus {
+    outline: none;
+    border-color: #d4a017 !important;
+    box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.2), 0 0 16px
+      rgba(212, 160, 23, 0.15);
+  }
+
+  /* Gold underline slides in from left on focus */
+  .floating-label-group::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #d4a017, #f0c040);
+    border-radius: 0 0 4px 4px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(212, 160, 23, 0.4);
+  }
+
+  .floating-label-group:focus-within::after {
+    width: 100%;
+  }
+
+  /* ─── Mobile motion reduction ─── */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
