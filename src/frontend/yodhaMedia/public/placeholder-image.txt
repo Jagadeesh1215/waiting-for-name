@@ -1,0 +1,10 @@
+This folder is for static images used in the yodhaMedia website.
+
+Replace or add images here:
+- hero-bg.jpg         — Hero section background
+- logo.png            — yodhaMedia logo
+- og-image.jpg        — Open Graph social share image (1200x630)
+- favicon.ico         — Browser favicon (replace placeholder)
+
+All images should be optimized for web (WebP preferred).
+Use next/image for all images in the app for automatic optimization.
