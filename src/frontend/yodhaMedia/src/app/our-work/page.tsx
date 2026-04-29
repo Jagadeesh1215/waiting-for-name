@@ -1,156 +1,256 @@
+'use client'
+
 import Link from 'next/link'
-import { ArrowRight, TrendingUp, Users, Star } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
+import { Suspense, useMemo, useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { PublicLayout } from '@/components/layout/PublicLayout'
-import { Button } from '@/components/ui/button'
-import { ScrollReveal, StaggerReveal, StaggerItem } from '@/lib/animations'
+import { ConsultationModal } from '@/components/layout/ConsultationModal'
+import {
+  ScrollReveal,
+  containerVariants,
+  fadeUpVariants,
+  sectionLabelClass,
+} from '@/lib/animations'
 
-const caseStudies = [
-  {
-    id: 'apollo-seo',
-    title: 'Apollo Network — 300% Organic Traffic Growth',
-    category: 'SEO',
-    desc: 'Implemented comprehensive local SEO strategy across 12 hospital locations, tripling organic search visibility in 8 months.',
-    stats: ['+300%', 'Organic Traffic'],
-    color: 'from-[#2d1b69] to-[#4a2d9e]',
-    icon: TrendingUp,
-  },
-  {
-    id: 'sunrise-social',
-    title: 'Sunrise Clinics — 15K Instagram Followers',
-    category: 'Social Media',
-    desc: 'Built a vibrant healthcare community on Instagram with patient education content, growing to 15K followers in 6 months.',
-    stats: ['15K+', 'Followers'],
-    color: 'from-[#4a2d9e] to-[#d4a017]',
-    icon: Users,
-  },
-  {
-    id: 'fortis-brand',
-    title: 'Fortis Wellness — Brand Revamp',
-    category: 'Brand Strategy',
-    desc: 'Complete brand identity overhaul including logo, messaging, website, and all patient touchpoints.',
-    stats: ['5★', 'Rating'],
-    color: 'from-[#d4a017] to-[#a07810]',
-    icon: Star,
-  },
-  {
-    id: 'medanta-content',
-    title: 'Medanta Group — 2M Content Impressions',
-    category: 'Content Marketing',
-    desc: 'Medical education blog strategy generated 2 million impressions and positioned Medanta as India\'s top health content hub.',
-    stats: ['2M+', 'Impressions'],
-    color: 'from-[#1a0f3d] to-[#2d1b69]',
-    icon: TrendingUp,
-  },
-  {
-    id: 'dr-patel-personal',
-    title: 'Dr. Rajan Patel — Personal Brand Launch',
-    category: 'Social Media',
-    desc: 'Launched complete personal brand for a top cardiologist, growing LinkedIn presence to 25K+ followers.',
-    stats: ['25K+', 'LinkedIn'],
-    color: 'from-[#2d1b69] to-[#1a0f3d]',
-    icon: Users,
-  },
-  {
-    id: 'max-analytics',
-    title: 'Max Healthcare — ROI Dashboard',
-    category: 'Analytics',
-    desc: 'Built comprehensive marketing analytics dashboard tracking CAC, LTV, and attribution across 8 channels.',
-    stats: ['8x', 'ROI Clarity'],
-    color: 'from-[#4a2d9e] to-[#2d1b69]',
-    icon: TrendingUp,
-  },
+// ─── Portfolio data ───────────────────────────────────────────────────────────
+
+interface Project {
+  name: string; category: string; service: string; outcome: string; gradient: string;
+}
+
+const PROJECTS: Project[] = [
+  { name: 'Apollo Specialty Hospital', category: 'Healthcare', service: 'Social Media Partner', outcome: '3x increase in patient inquiries', gradient: 'from-blue-600 to-purple-600' },
+  { name: 'City Dental Clinic', category: 'Healthcare', service: 'ORM + Web Design', outcome: '4.8★ Google rating, 2x website traffic', gradient: 'from-teal-500 to-blue-600' },
+  { name: 'Dr. Sharma Orthopedic Center', category: 'Healthcare', service: 'Social Media + ORM', outcome: '200% follower growth in 6 months', gradient: 'from-purple-600 to-pink-500' },
+  { name: 'TechBrand India', category: 'E-commerce', service: 'Digital Marketing', outcome: '5x ROAS on Meta Ads campaigns', gradient: 'from-orange-500 to-red-600' },
+  { name: 'FashionHub Online', category: 'E-commerce', service: 'Influencer Marketing', outcome: '1M+ reach, 15K new followers', gradient: 'from-pink-500 to-rose-600' },
+  { name: 'GreenMart Superstore', category: 'Retail', service: 'Social Media + Branding', outcome: 'Launched new brand identity', gradient: 'from-green-500 to-teal-600' },
+  { name: 'Prestige Fitness Club', category: 'Wellness', service: 'Social Media Partner', outcome: '150+ new memberships from Instagram', gradient: 'from-yellow-500 to-orange-600' },
+  { name: 'LocalEats Restaurant Chain', category: 'Restaurants', service: 'Social Media + ORM', outcome: '4.9★ Zomato rating, 30% more orders', gradient: 'from-red-500 to-orange-500' },
+  { name: 'Premier Real Estate', category: 'Professional Services', service: 'Digital Marketing', outcome: '40+ qualified leads per month', gradient: 'from-slate-600 to-blue-700' },
+  { name: 'EduSkill Academy', category: 'Education', service: 'Web Design + Digital Marketing', outcome: 'New website + 3x enrollment inquiries', gradient: 'from-indigo-600 to-purple-700' },
+  { name: 'GlowBeauty Salon', category: 'Beauty & Wellness', service: 'Influencer Marketing', outcome: 'Featured by 10+ local influencers', gradient: 'from-rose-400 to-pink-600' },
+  { name: 'StartupTech Co.', category: 'Startup', service: 'Branding + Web Design', outcome: 'Full brand identity from scratch', gradient: 'from-cyan-500 to-blue-600' },
 ]
 
-const overallStats = [
-  { value: '200+', label: 'Projects Delivered' },
-  { value: '₹500Cr+', label: 'Revenue Generated for Clients' },
-  { value: '98%', label: 'Client Satisfaction' },
-  { value: '12', label: 'States Covered' },
+const CATEGORIES = ['All', 'Healthcare', 'E-commerce', 'Retail', 'Wellness', 'Restaurants', 'Professional Services', 'Education', 'Startup']
+
+const STATS = [
+  { label: 'Projects Featured', value: '12' },
+  { label: 'Service Categories', value: '6' },
+  { label: 'Happy Clients', value: '50+' },
+  { label: 'Industries', value: '5+' },
 ]
+
+// ─── Project Card ─────────────────────────────────────────────────────────────
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const initials = project.name.split(' ').slice(0, 2).map((w) => w[0]).join('')
+  return (
+    <motion.div
+      layout
+      variants={fadeUpVariants}
+      initial="hidden"
+      animate="visible"
+      exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.2 } }}
+      transition={{ delay: index * 0.07 }}
+      whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(45,27,105,0.2)' }}
+      className="bg-white dark:bg-brand-card-dark border border-brand-border-light dark:border-brand-purple/30 rounded-2xl overflow-hidden shadow-sm transition-smooth group"
+      data-ocid={`our-work.project.item.${index + 1}`}
+    >
+      <div className={`relative h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}>
+        <div className="absolute inset-0 bg-brand-purple/0 group-hover:bg-brand-purple/20 transition-smooth" />
+        <span className="relative z-10 text-white font-display font-bold text-5xl select-none">{initials}</span>
+      </div>
+      <div className="p-5">
+        <span className="inline-block text-xs font-mono font-semibold bg-brand-gold/10 text-brand-gold px-3 py-1 rounded-full mb-3">{project.category}</span>
+        <h3 className="font-heading font-bold text-brand-purple dark:text-white text-base mb-1 leading-snug">{project.name}</h3>
+        <p className="text-brand-text-secondary dark:text-white/50 text-sm mb-3">{project.service}</p>
+        <div className="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs px-3 py-1.5 rounded-lg mb-4 font-body">📈 {project.outcome}</div>
+        <div className="relative group/btn">
+          <button
+            type="button"
+            disabled
+            className="w-full text-sm font-heading font-semibold border border-brand-border-light dark:border-brand-purple/30 text-brand-text-secondary dark:text-white/40 py-2 rounded-lg cursor-not-allowed opacity-60 transition-smooth"
+            data-ocid={`our-work.case-study.button.${index + 1}`}
+          >
+            View Case Study →
+          </button>
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-brand-purple text-white text-xs rounded-lg whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-smooth pointer-events-none z-10">
+            Case study coming soon
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+// ─── Page Inner (needs Suspense for useSearchParams) ─────────────────────────
+
+function OurWorkInner() {
+  const [modalOpen, setModalOpen] = useState(false)
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const activeCategory = searchParams.get('category') ?? 'All'
+
+  const filtered = useMemo(() => {
+    if (activeCategory === 'All') return PROJECTS
+    return PROJECTS.filter((p) => p.category === activeCategory)
+  }, [activeCategory])
+
+  const setCategory = (cat: string) => {
+    if (cat === 'All') router.push('/our-work')
+    else router.push(`/our-work?category=${encodeURIComponent(cat)}`)
+  }
+
+  return (
+    <PublicLayout>
+      <main className="overflow-x-hidden">
+        {/* ── Hero ── */}
+        <section className="gradient-mesh py-20 md:py-28">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <ScrollReveal>
+              <span className={sectionLabelClass}>OUR WORK</span>
+              <h1 className="font-display text-4xl md:text-6xl font-bold text-brand-purple dark:text-white mt-3 mb-5 leading-tight">
+                Delivering Digital Presence
+                <br className="hidden md:block" /> That Drives Results
+              </h1>
+              <p className="text-brand-text-secondary dark:text-white/70 text-xl leading-relaxed max-w-3xl mx-auto">
+                From healthcare institutions to emerging brands — we build digital systems that generate real business outcomes.
+              </p>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* ── Sticky Filter Bar ── */}
+        <div
+          className="sticky top-[72px] z-40 bg-white/95 dark:bg-brand-card-dark/95 backdrop-blur border-b border-brand-border-light dark:border-brand-purple/20 py-3 shadow-sm"
+          data-ocid="our-work.filter.tab"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
+              {CATEGORIES.map((cat) => (
+                <motion.button
+                  key={cat}
+                  type="button"
+                  onClick={() => setCategory(cat)}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 12 }}
+                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-heading font-semibold transition-smooth shrink-0 ${
+                    activeCategory === cat
+                      ? 'bg-brand-gold text-white shadow-md shadow-brand-gold/30'
+                      : 'text-brand-text-secondary dark:text-white/60 hover:bg-brand-bg-light dark:hover:bg-brand-purple/20'
+                  }`}
+                  data-ocid={`our-work.filter.${cat.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {cat}
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Portfolio Grid ── */}
+        <section className="py-16 bg-brand-bg-light dark:bg-brand-bg-dark min-h-[400px]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {filtered.length === 0 ? (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="col-span-full text-center py-20"
+                    data-ocid="our-work.portfolio.empty_state"
+                  >
+                    <div className="text-5xl mb-4">🔍</div>
+                    <p className="font-heading text-brand-purple dark:text-white text-lg font-semibold">No projects in this category yet</p>
+                    <p className="text-brand-text-secondary dark:text-white/60 text-sm mt-2">Check back soon — we're always adding new case studies.</p>
+                  </motion.div>
+                ) : (
+                  filtered.map((project, i) => (
+                    <ProjectCard key={project.name} project={project} index={i} />
+                  ))
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* ── Stats Banner ── */}
+        <section className="py-14 bg-brand-purple">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            >
+              {STATS.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  variants={fadeUpVariants}
+                  className="text-center"
+                  data-ocid={`our-work.stats.item.${i + 1}`}
+                >
+                  <div className="text-3xl md:text-4xl font-display font-bold text-brand-gold mb-1">{s.value}</div>
+                  <p className="text-white/70 font-heading text-sm">{s.label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="py-20 bg-white dark:bg-brand-card-dark">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <ScrollReveal>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-purple dark:text-white mb-5 leading-tight">
+                Ready to Add Your Business to Our Success Stories?
+              </h2>
+              <p className="text-brand-text-secondary dark:text-white/60 text-lg mb-10 max-w-2xl mx-auto">
+                Let's discuss how we can help you build a digital presence that delivers real results.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <motion.button
+                  type="button"
+                  onClick={() => setModalOpen(true)}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold-light text-white font-heading font-semibold px-8 py-3.5 rounded-full transition-smooth hover:shadow-[0_0_30px_rgba(212,160,23,0.4)] animate-glow-pulse"
+                  data-ocid="our-work.cta.primary_button"
+                >
+                  Start Your Project <span>→</span>
+                </motion.button>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 border-2 border-brand-purple dark:border-white/40 text-brand-purple dark:text-white font-heading font-semibold px-8 py-3.5 rounded-full transition-smooth hover:bg-brand-purple/5"
+                  data-ocid="our-work.cta.secondary_button"
+                >
+                  View Our Services
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      </main>
+
+      <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+    </PublicLayout>
+  )
+}
 
 export default function OurWorkPage() {
   return (
-    <PublicLayout>
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0d0a1e] to-[#2d1b69] py-24 text-white" data-ocid="our_work.hero.section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollReveal>
-            <p className="text-[#d4a017] font-semibold mb-3 text-sm uppercase tracking-wider">Portfolio</p>
-            <h1 className="text-4xl sm:text-5xl font-bold font-display mb-6">
-              Results That Speak for Themselves
-            </h1>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Real campaigns, real results. See how yodhaMedia has transformed digital presence
-              for healthcare providers across India.
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="bg-[#0d0a1e] border-y border-[#2d1b69]/30 py-10" data-ocid="our_work.stats.section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            {overallStats.map((s) => (
-              <div key={s.label}>
-                <p className="text-3xl font-bold font-display text-[#d4a017]">{s.value}</p>
-                <p className="text-sm text-gray-400 mt-1">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio Grid */}
-      <section className="bg-[var(--background)] py-20" data-ocid="our_work.portfolio.section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((cs, i) => (
-              <StaggerItem key={cs.id}>
-                <div
-                  className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:shadow-xl transition-all duration-300"
-                  data-ocid={`our_work.item.${i + 1}`}
-                >
-                  <div className={`h-48 bg-gradient-to-br ${cs.color} flex items-center justify-center`}>
-                    <div className="text-center text-white">
-                      <p className="text-5xl font-bold font-display text-[#d4a017]">{cs.stats[0]}</p>
-                      <p className="text-sm text-gray-300 mt-1">{cs.stats[1]}</p>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <span className="text-xs text-[#d4a017] bg-[#d4a017]/10 px-2.5 py-1 rounded-full font-medium">
-                      {cs.category}
-                    </span>
-                    <h3 className="text-lg font-bold font-display text-[#2d1b69] dark:text-white mt-3 mb-2 group-hover:text-[#d4a017] transition-colors">
-                      {cs.title}
-                    </h3>
-                    <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{cs.desc}</p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerReveal>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-gradient-to-br from-[#2d1b69] to-[#1a0f3d] py-20" data-ocid="our_work.cta.section">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold font-display text-white mb-4">
-              Ready to be our next success story?
-            </h2>
-            <p className="text-gray-300 mb-8">
-              Join 200+ healthcare providers who have grown with yodhaMedia.
-            </p>
-            <Button variant="hero" asChild data-ocid="our_work.cta.primary_button">
-              <Link href="/services">
-                Start Your Journey <ArrowRight className="h-5 w-5 ml-2" />
-              </Link>
-            </Button>
-          </ScrollReveal>
-        </div>
-      </section>
-    </PublicLayout>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-brand-purple border-t-transparent rounded-full animate-spin" /></div>}>
+      <OurWorkInner />
+    </Suspense>
   )
 }

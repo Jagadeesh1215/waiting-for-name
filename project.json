@@ -1,28 +1,27 @@
 {
-  "overview": "yodhaMedia is a complete, production-ready marketing and media website built with Next.js 15 App Router, TypeScript, and Tailwind CSS v4. It features a 3D hero section, Framer Motion animations, glassmorphism design, dark mode, blog management system, and a full admin interface — all in a standalone project ready to run.",
+  "overview": "YodhaMedia is a premium production-ready Next.js 15 marketing website for VenIQ Media LLP, targeting hospitals, clinics, doctors, and modern businesses in India. It features a visually rich brand identity with deep purple/gold design system, advanced 3D hero animations, a full blog system, and a complete admin dashboard for blog management — all in one unified Next.js project.",
   "features": [
-    "Next.js 15 App Router with TypeScript",
-    "3D hero scene with Three.js and React Three Fiber",
-    "Framer Motion scroll animations and magnetic CTAs",
-    "Glassmorphism design with deep purple and gold brand palette",
-    "Dark mode toggle persisted in localStorage",
-    "Full blog system with admin dashboard, create, and edit pages",
-    "Consultation modal and WhatsApp float button",
-    "Working API routes for blog CRUD operations",
-    "Cookie banner and scroll-to-top button",
-    "8 public pages: Home, About, Services, Blog, Our Work, Business Hub"
+    "Premium marketing website with 8 public pages — Home, About, Services, Blog, Business Hub, Our Work, and more",
+    "Advanced 3D hero section using Three.js and React Three Fiber",
+    "Smooth Framer Motion animations including parallax, magnetic CTAs, and scroll reveals",
+    "Complete admin dashboard for blog management with create, edit, and delete",
+    "Multi-step blog creation wizard with rich text editing",
+    "Full blog REST API (5 endpoints) built into the Next.js project",
+    "Deep purple/gold brand design system with glassmorphism and gradient meshes",
+    "Dark mode support, SEO metadata per page, and responsive design",
+    "TypeScript throughout with zero errors"
   ],
-  "category": "marketing-website",
+  "category": "marketing-business",
   "tags": [
     "nextjs",
-    "typescript",
-    "tailwindcss",
-    "framer-motion",
-    "three-js",
+    "marketing",
     "blog",
     "admin",
-    "dark-mode",
-    "glassmorphism"
+    "healthcare",
+    "framer-motion",
+    "three-js",
+    "tailwind",
+    "typescript"
   ],
-  "last_updated": "2026-04-28T11:31:47.284Z"
+  "last_updated": "2026-04-29T04:08:00.324Z"
 }
